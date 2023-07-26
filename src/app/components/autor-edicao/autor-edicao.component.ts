@@ -26,7 +26,7 @@ export class AutorEdicaoComponent implements OnInit {
 
         .subscribe({
           next: (data: any) => {
-            console.log(data);
+           // console.log(data);
             this.formEdicao.patchValue(data);
 
           },
@@ -37,14 +37,15 @@ export class AutorEdicaoComponent implements OnInit {
   }
 
   formEdicao = new FormGroup({
+    idAutor: new FormControl('' ),
     nome: new FormControl('' ),
     sexo: new FormControl('' ),
     dataNascimento: new FormControl('' ),
     email: new FormControl('' ),
     paisOrigem: new FormControl('' ),
     cpf: new FormControl('' ),
-
   });
+
 
   get form(): any {
     return this.formEdicao.controls;

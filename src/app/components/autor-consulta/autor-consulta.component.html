@@ -12,20 +12,24 @@
           <thead>
               <tr>
                   <th>Nome do autor</th>
+                  <th>Nascimento</th>
                   <th>Sexo</th>
                   <th>E-mail</th>
                   <th>País</th>
-                  <th >CPF</th>
+                  <th>CPF</th>
                   <th>Ações</th>
               </tr>
           </thead>
           <tbody>
-              <tr *ngFor="let item of autores">
+
+              <tr *ngFor="let item of autores.slice((paginaAtual - 1) * itensPorPagina, paginaAtual * itensPorPagina)">
+
                   <td>{{item.nome}}</td>
+                  <td>{{item.dataNascimento | date:'dd/MM/yyyy' }}</td>
                   <td>{{item.sexo}}</td>
                   <td>{{item.email}}</td>
                   <td>{{item.paisOrigem}}</td>
-                  <td>{{item.cpf}}</td>
+                  <td>{{formatarCpf(item.cpf)}}</td>
                   <td>
                       <button class="btn btn-sm btn-outline-danger me-2"
                       (click)="onDelete(item.idAutor)">
@@ -48,19 +52,26 @@
       </table>
   </div>
 
-  <nav aria-label="...">
-    <ul class="pagination pagination-sm">
-      <li class="page-item disabled">
-        <a class="page-link" href="#" tabindex="-1">1</a>
-      </li>
-      <li class="page-item"><a class="page-link" href="#">2</a></li>
-      <li class="page-item"><a class="page-link" href="#">3</a></li>
-      <li class="page-item"><a class="page-link" href="#">4</a></li>
-    </ul>
-  </nav>
+<!-- Paginação -->
+<nav aria-label="...">
+  <ul class="pagination pagination-sm">
+    <!-- Botão para a página anterior -->
+    <li class="page-item" [class.disabled]="paginaAtual === 1">
+      <a class="page-link" href="#" tabindex="-1" (click)="alterarPagina(paginaAtual - 1)">Anterior</a>
+    </li>
+
+    <!-- Listagem dos números das páginas -->
+    <li class="page-item" *ngFor="let pagina of paginas" [class.active]="pagina === paginaAtual">
+      <a class="page-link" href="#" (click)="alterarPagina(pagina)">{{pagina}}</a>
+    </li>
+
+    <!-- Botão para a próxima página -->
+    <li class="page-item" [class.disabled]="paginaAtual === paginas.length">
+      <a class="page-link" href="#" (click)="alterarPagina(paginaAtual + 1)">Próximo</a>
+    </li>
+  </ul>
+</nav>
 
 
-
-</div>
 
 
