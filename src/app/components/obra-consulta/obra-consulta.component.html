@@ -1,0 +1,64 @@
+<div>
+  <h5>/consultar Obras</h5>
+  <p>Pesquise Obras por período de publicação.</p>
+  <hr />
+
+
+  <form [formGroup]="formConsulta" (ngSubmit)="onSubmit()">
+
+
+      <div class="row mb-2">
+          <div class="col-md-2">
+              <input type="date" class="form-control" formControlName="dataInicio"/>
+          </div>
+          <div class="col-md-2">
+              <input type="date" class="form-control" formControlName="dataFim"/>
+          </div>
+          <div class="col-md-2">
+              <input type="submit" class="btn btn-light"
+                     value="Pesquisar"/>
+          </div>
+      </div>
+  </form>
+
+
+  <div class="table-responsive mt-2">
+      <table class="table table-sm table-striped table-hover">
+          <thead>
+              <tr>
+                  <th>Nome do Autor</th>
+                  <th>Nome da Obra</th>
+                  <th>Descrição</th>
+                  <th>Ações</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let item of consultas">
+                  <td>{{item.autor.nome}}</td>
+                  <td>{{item.nome}}</td>
+                  <td>{{item.descricao}}</td>
+
+                  <td>
+                    <button class="btn btn-sm btn-outline-danger me-2"
+                      (click)="onDelete(item.obra)" >
+                        Excluir
+                      </button>
+                    <button class="btn btn-sm btn-outline-primary"
+                        [routerLink]="['/obra-edicao' , item.idObra]">
+                        Editar
+                    </button>
+                </td>
+
+
+              </tr>
+          </tbody>
+          <tfoot><br>
+              <tr>
+                  <td colspan="4">
+                      Quantidade de Obras no período : {{consultas.length}}
+                  </td>
+              </tr>
+          </tfoot>
+      </table>
+  </div>
+</div>
