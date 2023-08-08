@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './obra-consulta.component.html',
   styleUrls: ['./obra-consulta.component.css']
 })
-export class ObraConsultaComponent {
+export class ObraConsultaComponent implements OnInit{
 
   consultas: any[] = [];
   mensagem: string = '' ;
@@ -22,9 +22,23 @@ export class ObraConsultaComponent {
     dataFim: new FormControl('' )
   });
 
+
   get form(): any {
     return this.formConsulta.controls;
   }
+
+  ngOnInit(): void {
+    this.HttpClient.get('http://localhost:8081/obra')
+      .subscribe({
+        next: (data) => {
+          this.consultas = data as any[];
+        },
+        error: (e) => {
+          console.log(e);
+        }
+      })
+  }
+
 
   onSubmit(): void {
     let dataInicio = this.formConsulta.value.dataInicio;
@@ -34,7 +48,6 @@ export class ObraConsultaComponent {
     .subscribe({
       next: (data) => {
         this.consultas = data as any[];
-
       },
       error: (e) => {
         console.log(e.error);
@@ -49,7 +62,8 @@ export class ObraConsultaComponent {
       this.HttpClient.delete('http://localhost:8081/obra/' +idObra)
         .subscribe({
           next: (data: any) => {
-
+            this.mensagem = data.mensagem;
+            this.ngOnInit();
           },
           error: (e) => {
             this.mensagem = e.error.mensagem;

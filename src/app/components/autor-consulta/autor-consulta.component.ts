@@ -1,6 +1,7 @@
 import { Component , OnInit} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+
 @Component({
   selector: 'app-autor-consulta',
   templateUrl: './autor-consulta.component.html',
@@ -13,6 +14,7 @@ export class AutorConsultaComponent implements OnInit {
 
   paginaAtual = 1; // Página atual inicial
   itensPorPagina = 10; // Número de itens exibidos por página
+
 
   constructor(
     private httpClient: HttpClient
@@ -56,17 +58,11 @@ ngOnInit(): void {
   }
 
 
-  get paginas(): number[] {
-    const totalPaginas = Math.ceil(this.autores.length / this.itensPorPagina);
-    return Array.from({ length: totalPaginas }, (_, index) => index + 1);
-  }
 
-    // Função para alterar a página atual
-    alterarPagina(pagina: number): void {
-      if (pagina >= 1 && pagina <= this.paginas.length) {
-        this.paginaAtual = pagina;
-      }
-    }
+
+
+
+
   }
 
 

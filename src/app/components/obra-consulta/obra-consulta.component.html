@@ -1,7 +1,11 @@
 <div>
   <h5>/consultar Obras</h5>
-  <p>Pesquise Obras por período de publicação.</p>
+  <p>Pesquisar Obras por período de publicação.</p>
   <hr />
+
+  <div class="mb-2">
+    <strong>{{mensagem}}</strong>
+  </div>
 
 
   <form [formGroup]="formConsulta" (ngSubmit)="onSubmit()">
@@ -22,7 +26,7 @@
   </form>
 
 
-  <div class="table-responsive mt-2">
+  <div class="table-responsive mt-2" *ngIf="consultas.length">
       <table class="table table-sm table-striped table-hover">
           <thead>
               <tr>
@@ -38,9 +42,10 @@
                   <td>{{item.nome}}</td>
                   <td>{{item.descricao}}</td>
 
+
                   <td>
                     <button class="btn btn-sm btn-outline-danger me-2"
-                      (click)="onDelete(item.obra)" >
+                      (click)="onDelete(item.idObra)" >
                         Excluir
                       </button>
                     <button class="btn btn-sm btn-outline-primary"

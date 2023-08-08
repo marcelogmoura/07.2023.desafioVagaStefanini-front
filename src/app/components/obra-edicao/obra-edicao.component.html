@@ -1,1 +1,64 @@
-<p>obra-edicao works!</p>
+<div>
+
+  <h5>/cadastrar Obra</h5>
+  <p>Preencha os campos para editar os dados de uma Obra.</p>
+  <hr />
+
+  <div class="mb-2">
+    <strong>{{mensagem}}</strong>
+  </div>
+
+  <form [formGroup]="formEdicao" (ngSubmit)="onSubmit()">
+
+
+      <div class="row mb-2">
+          <div class="col-md-4">
+              <label>Selecione o Autor:</label>
+              <select class="form-select" formControlName="idAutor">
+                  <option value="">Escolha uma opção</option>
+                  <option *ngFor="let item of autores" value="{{item.idAutor}}"> {{item.nome}}</option>
+              </select>
+          </div>
+          <div class="col-md-4">
+            <label>Nome da Obra:</label>
+            <input type="text" class="form-control" formControlName="nome" />
+        </div>
+
+        <div class="col-md-2">
+          <label>Data de Publicação:</label>
+          <input type="date" class="form-control" formControlName="dataPublicacao" />
+      </div>
+
+          <div class="col-md-2">
+              <label>Data de Exposição:</label>
+              <input type="date" class="form-control" formControlName="dataExposicao" />
+          </div>
+      </div><br>
+
+
+      <div class="row mb-2">
+          <div class="col-md-12">
+              <label>Descrição:</label>
+              <textarea class="form-control" formControlName="descricao"></textarea>
+          </div>
+      </div><br>
+
+
+      <div class="row mb-2">
+          <div class="col-md-12">
+              <input type="submit"
+                     class="btn btn-success me-2"
+                     value="Alterar"
+                     />
+
+              <a class="btn btn-light"
+                 routerLink="/obra-consulta">
+                Consultar Obras</a>
+          </div>
+      </div>
+
+
+  </form>
+
+
+</div>

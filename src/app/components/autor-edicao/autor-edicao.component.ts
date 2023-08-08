@@ -38,9 +38,9 @@ export class AutorEdicaoComponent implements OnInit {
 
   formEdicao = new FormGroup({
     idAutor: new FormControl('' ),
-    nome: new FormControl('' ),
+    nome: new FormControl('' , [Validators.required]  ),
     sexo: new FormControl('' ),
-    dataNascimento: new FormControl('' ),
+    dataNascimento: new FormControl('' , [Validators.required]  ),
     email: new FormControl('' ),
     paisOrigem: new FormControl('' ),
     cpf: new FormControl('' ),

@@ -20,10 +20,10 @@ export class ObraCadastroComponent implements OnInit{
 
   formCadastro = new FormGroup({
     idAutor: new FormControl(),
-    nome: new FormControl(),
-    descricao: new FormControl(),
-    dataPublicacao: new FormControl(),
-    dataExposicao: new FormControl()
+    nome: new FormControl('' , [Validators.required] ),
+    descricao: new FormControl('' , [Validators.required] ),
+    dataPublicacao: new FormControl(''),
+    dataExposicao: new FormControl('')
   });
 
   ngOnInit(): void {

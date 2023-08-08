@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
+import * as $ from 'jquery';
+
+
 
 @Component({
   selector: 'app-autor-cadastro',
@@ -9,6 +12,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./autor-cadastro.component.css']
 })
 export class AutorCadastroComponent {
+
 
   mensagem: string = '';
 
@@ -19,9 +23,9 @@ export class AutorCadastroComponent {
 
   formCadastro = new FormGroup({
 
-    nome: new FormControl(''   ),
+    nome: new FormControl('' , [Validators.required]  ),
     sexo: new FormControl('' ),
-    dataNascimento: new FormControl(''  ),
+    dataNascimento: new FormControl('' , [Validators.required]  ),
     email: new FormControl('' ),
     paisOrigem: new FormControl('' ),
     cpf: new FormControl('' ),
@@ -47,6 +51,8 @@ export class AutorCadastroComponent {
         }
       })
   }
+
+
 
 
 
