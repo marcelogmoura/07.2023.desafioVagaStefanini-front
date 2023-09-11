@@ -3,12 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule  } from '@angular/common/http'
-
-
-import { IConfig} from 'ngx-mask' // ngx mask
-
-
-
+import { NgxMaskModule, IConfig } from 'ngx-mask';
 
 import { AppComponent } from './app.component';
 import { AutorCadastroComponent } from './components/autor-cadastro/autor-cadastro.component';
@@ -18,6 +13,7 @@ import { ObraCadastroComponent } from './components/obra-cadastro/obra-cadastro.
 import { ObraConsultaComponent } from './components/obra-consulta/obra-consulta.component';
 import { ObraEdicaoComponent } from './components/obra-edicao/obra-edicao.component';
 
+export const options: Partial<null|IConfig> | (() => Partial<IConfig>) = null;
 
 // ngx mask
 const maskConfig: Partial<IConfig> = {
@@ -58,6 +54,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgxMaskModule.forRoot(),
 
 
   ],
