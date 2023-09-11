@@ -60,11 +60,11 @@
             </select>
           </div>
 
-          <div class="col-md-4" >
-            <label>CPF: - disponivel apenas para selecao BR</label>
+
+          <div class="col-md-4" *ngIf="formCadastro.get('paisOrigem')?.value == 'Brasil' ">
+            <label>CPF:</label>
             <input id="cpf" type="text"  autocomplete="off" maxlength="14" class="form-control"
                    placeholder="___.___.___-__"  formControlName="cpf" mask="000.000.000-00"
-
                    />
           </div>
 
